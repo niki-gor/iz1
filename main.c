@@ -1,18 +1,24 @@
 #include <stdio.h>
 #include "vector.h"
+#include <string.h>
 
 void main() {
-    vector vec;
-    init(&vec, sizeof(size_t));
+    const char* str1 = "Hello";
+    const char* str2 = "hello";
 
-    for (size_t i = 0; i < 100; ++i) {
-        push_back(&vec, &i);
-    }
-    for (size_t i = 0; i < 100; ++i) {
-        fprintf(stdout, "%d ", *(size_t*)at(&vec, i));
-    }
+    vector first;
+    init(&first, sizeof(char));
+    resize(&first, sizeof(str1));
 
-    fprintf(stdout, "%d", vec.buf_size);
+    vector second;
+    init(&second, sizeof(char));
+    resize(&second, sizeof(str2));
+
+    strcpy(first.buffer, str1);
+    strcpy(second.buffer, str2);
+
+    fprintf(stdout, "%d\n", edit_distance(&first, &second));
     
-    del(&vec);
+    del(&first);
+    del(&second);
 }

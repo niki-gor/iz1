@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.0)
 project(document VERSION 0.1.0)
 
 file(GLOB SOURCES "*.c" "*/*.c")
-file(GLOB INCLUDE_DIRS vector)
+file(GLOB INCLUDE_DIRS vector utility)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDE_DIRS})
