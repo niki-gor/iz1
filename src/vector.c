@@ -1,7 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
 #include "vector.h"
 
 void reserve(vector* vec, size_t new_capacity) {
@@ -47,4 +43,21 @@ void del(vector* vec) {
         vec->capacity = 0;
         vec->sizeof_elem = 0;
     }
+}
+
+vector* str2vec(char* str) {
+    vector* result = (vector*)malloc(sizeof(vector));
+    init(result, sizeof(char));
+    resize(result, strlen(str) + 1);
+    strcpy(result->buffer, str);
+    return result;
+}
+
+// считается, что строки a и b заканчиваются нулем
+vector* concat_and_del(vector* a, vector* b) {
+    size_t old_size = a->size;
+    resize(a, a->size + b->size - 1);
+    memmove(a->buffer + old_size - 1, b->buffer, b->size);
+    del(b);
+    return a;
 }
