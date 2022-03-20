@@ -4,6 +4,8 @@
 #include "types.h"
 #include "date.h"
 
+
+
 typedef struct Document Document;
 struct Document {
     char* issuer;

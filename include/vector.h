@@ -7,22 +7,23 @@
 #include <string.h>
 #include "types.h"
 
-typedef struct vector vector;
-struct vector {
+
+
+typedef struct vector_struct vector_struct;
+typedef vector_struct* vector;
+struct vector_struct {
     byte* buffer;
     size_t size;
     size_t capacity;
     size_t sizeof_elem;
 };
 
-void init(vector* vec, size_t sizeof_element);
+void vec_init(vector vec, size_t sizeof_element);
 
-void reserve(vector* vec, size_t new_capacity);
-void push_back(vector* vec, void* val_ptr);
-void resize(vector* vec, size_t new_size);
-vector* str2vec(char* str);
-vector* concat_and_del(vector* a, vector* b);
+void vec_reserve(vector vec, size_t new_capacity);
+void vec_push_back(vector vec, void* val_ptr);
+void vec_resize(vector vec, size_t new_size);
 
-void del(vector* vec);
+void vec_del(vector vec);
 
 #endif
